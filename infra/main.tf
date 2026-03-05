@@ -152,7 +152,7 @@ resource "aws_iam_role" "github_actions" {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
           }
           StringLike = {
-            "token.actions.githubusercontent.com:sub" = "repo:343-guilty-spark/blog:*"
+            "token.actions.githubusercontent.com:sub" = "repo:frontsidebus/blog:*"
           }
         }
       }
