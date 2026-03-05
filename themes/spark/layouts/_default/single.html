@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    <div class="post-meta">
+      {{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      <span class="post-reading-time">{{ math.Round (div (countwords .Content) 200.0) }} min read</span>
+    </div>
+  </header>
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+  <footer class="post-footer">
+    <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to all posts</a>
+  </footer>
+</article>
+{{ end }}

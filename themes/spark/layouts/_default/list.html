@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="post-list">
+  {{ range .Pages.ByDate.Reverse }}
+  <article class="post-card">
+    <a href="{{ .Permalink }}">
+      <h2 class="post-card-title">{{ .Title }}</h2>
+      <div class="post-card-meta">
+        {{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <span class="post-reading-time">{{ math.Round (div (countwords .Content) 200.0) }} min read</span>
+      </div>
+      {{ with .Description }}<p class="post-card-summary">{{ . }}</p>{{ end }}
+    </a>
+  </article>
+  {{ end }}
+</div>
+{{ end }}
