@@ -77,6 +77,25 @@ resource "aws_acm_certificate" "blog" {
   }
 }
 
+# CloudFront Function to rewrite subdirectory URLs to index.html
+resource "aws_cloudfront_function" "rewrite_uri" {
+  name    = "blog-rewrite-uri"
+  runtime = "cloudfront-js-2.0"
+  publish = true
+  code    = <<-EOF
+    function handler(event) {
+      var request = event.request;
+      var uri = request.uri;
+      if (uri.endsWith('/')) {
+        request.uri += 'index.html';
+      } else if (!uri.includes('.')) {
+        request.uri += '/index.html';
+      }
+      return request;
+    }
+  EOF
+}
+
 # CloudFront Distribution
 resource "aws_cloudfront_distribution" "blog" {
   enabled             = true
@@ -108,6 +127,11 @@ resource "aws_cloudfront_distribution" "blog" {
     default_ttl            = 3600
     max_ttl                = 86400
     compress               = true
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.rewrite_uri.arn
+    }
   }
 
   custom_error_response {
