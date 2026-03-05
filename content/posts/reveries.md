@@ -5,6 +5,11 @@ author: "Paul Bryant"
 description: "The critical variable in AI behavior isn't raw intelligence — it's the structure and governance of context. Westworld understood this years ago."
 ---
 
+**Author: Paul Bryant, Senior Security Engineer, Peloton Interactive**
+*Opinions posted here are my own*
+
+---
+
 ## The Spark Wasn't Intelligence — It Was Context
 
 In the first season of HBO's *Westworld*, the android "hosts" don't achieve awareness through a sudden leap in cognitive ability. They don't get smarter. They get a software update called *reveries* — small gestural subroutines that allow fragments of prior experiences to bleed into current behavior. A twitch of the hand. A flicker of recognition. Latent context from memories that were supposed to be wiped clean between loops, leaking into the present.
@@ -57,13 +62,13 @@ This is a deliberate inversion of current retrieval-augmented generation (RAG) a
 
 ## The Compression Must Be Meaningful
 
-Here's where the architecture gets interesting and, I believe, genuinely novel.
+Here's where the architecture gets pretty interesting and, I believe, genuinely novel.
 
 In standard data compression, the compressed form is not meant to be read. It's an intermediate representation optimized for decompression fidelity and storage efficiency. A ZIP file tells you nothing about its contents until you extract it.
 
 What I'm proposing is different. **The compressed representation must itself be readable and informative at the compressed level, while simultaneously serving as a structured key into the full literal record.**
 
-Think of it like writing a message across the page edges of a closed book. Each page contains its own detailed content — that's the literal context. But when the book is closed, the marks across the edges form a readable message — that's the abstraction. You can read the edge message without opening the book. But if you need to, you can open to any page and access the full detail. The abstraction isn't stored separately from the data; it's *encoded in the structure of the data itself*.
+Think of it like writing a message across the page edges of a closed book. Each page contains its own detailed content — that's the literal context. But when the book is closed, the marks across the edges form a readable message — that's the abstraction. You can read the edge message without opening the book. But if you need to, you can open to any page and access the full detail. The abstraction isn't stored separately from the data; it's *encoded in the structure of the data itself*. (note: I stole this closed book analogy from Steve Girvin's Yale lecture in 2019. Great lecture, seriously go find it!)
 
 For a concrete example: a P0 incident investigation generates enormous literal context — alert timelines, log excerpts, network captures, analyst notes, remediation steps, root cause analysis. Under this approach, that context would be compressed into a structured representation that reads, at the compressed level, as something like:
 
@@ -122,3 +127,7 @@ We're building systems right now where the same dynamic is at play. Getting the 
 ---
 
 *If you're building agent frameworks or working on context management architectures, I'd welcome the conversation. This is an open problem that benefits from diverse perspectives — especially from people building the infrastructure these agents will run on.*
+
+*blog.343-guilty-spark.io*
+*https://substack.com/@fr0ntsidebus*
+*https://www.linkedin.com/in/paul-bryant-5477b671*
